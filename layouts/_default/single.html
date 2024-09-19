@@ -31,12 +31,12 @@
 
 {{ define "main" }}
 <div class="mt-4 px-4">
-  {{ if site.Params.showTableOfContents }}
+  {{ if .Params.showTableOfContents | default true }}
   <div class="relative" x-data="{ height: '' }" x-init="height = $el.scrollHeight + 'px'">
   {{ else }}
   <div>
   {{ end }}
-    {{ if site.Params.showTableOfContents }}
+    {{ if .Params.showTableOfContents | default true }}
     <div class="absolute right-0 lg:w-36 xl:w-48 hidden lg:block" :style="{ height }">
       {{ .TableOfContents }}
     </div>
@@ -66,13 +66,13 @@
         </p>
       </header>
 
-      {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
+      {{ if and .Params.Cover .Params.showCover | default true }}
       <img src="{{ .Params.Cover }}" alt="{{ .Title }}" />
       {{ end }}
 
       {{ .Content | emojify }}
 
-      {{ if site.Params.showPrevNextPost }}
+      {{ if .Params.showPrevNext | default true }}
       <div class="divider"></div>
       <div class="flex flex-col md:flex-row justify-between">
         {{ with .NextInSection }}
@@ -99,9 +99,9 @@
         <div></div>
         {{ end }}
       </div>
-      {{ end }}
       <div class="divider"></div>
-      {{ if site.Params.waline }}
+      {{ end }}
+      {{ if and site.Params.waline .Params.showWaline | default true }}
       {{ if fileExists "layouts/partials/waline.html" }}
         {{ partialCached "waline.html" . }}
       {{ else }}
