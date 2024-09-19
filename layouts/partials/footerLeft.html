@@ -1,11 +1,11 @@
 <div>
   {{ if site.Params.siteStartYear }}
   <p>
-    © {{ if eq now.Year site.Params.siteStartYear }}{{ now.Year }}{{ else }}{{ site.Params.siteStartYear }} - {{
-    now.Year }}{{ end }} {{ site.Title }}
+    {{ if eq now.Year site.Params.siteStartYear }}{{ now.Year }}{{ else }}{{ site.Params.siteStartYear }} - {{
+    now.Year }}{{ end }} <a href="https://ricolxwz.de">{{ site.Title }}</a> 🍂
   </p>
   {{ else }}
-  <p>© {{ now.Year }} {{ site.Title }}</p>
+  <p>版权所有 {{ now.Year }} {{ site.Title }}</p>
   {{ end }}
 
   {{ if site.Params.footerBottomText }}

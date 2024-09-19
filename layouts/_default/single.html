@@ -64,11 +64,6 @@
             {{ end }}</span>
           {{ end }}
         </p>
-        <div class="flex justify-between">
-          {{ partial "author.html" (dict "Params" .Params "template" "single") }}
-
-          {{ partial "share.html" . }}
-        </div>
       </header>
 
       {{ if and .Params.Cover site.Params.showSummaryCoverInPost }}
@@ -79,7 +74,7 @@
 
       {{ if site.Params.showPrevNextPost }}
       <div class="divider"></div>
-      <div class="flex flex-col md:flex-row justify-between gap-4 py-4">
+      <div class="flex flex-col md:flex-row justify-between">
         {{ with .NextInSection }}
         <a class="group btn btn-outline" href="{{ .RelPermalink }}" title="{{ .Title }}">
           <ion-icon name="chevron-back"></ion-icon>
@@ -105,16 +100,24 @@
         {{ end }}
       </div>
       {{ end }}
+      <div class="divider"></div>
+      {{ if site.Params.waline }}
+      {{ if fileExists "layouts/partials/waline.html" }}
+        {{ partialCached "waline.html" . }}
+      {{ else }}
+        <div id="waline"></div>
+        <script type="module">
+          import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+          init({
+            el: '#waline',
+            dark: 'html.dark',
+            serverURL: {{ site.Params.walineServer }},
+          });
+        </script>
+      {{ end }}
+      {{ end }}
     </article>
   </div>
-
-  {{ if or site.Config.Services.Disqus.Shortname site.Params.utterancesRepo site.Params.valine site.Params.waline }}
-  <div class="divider max-w-[65ch] mx-auto"></div>
-
-  <section class="max-w-[65ch] mx-auto space-y-4">
-    {{ partialCached "commentSystems.html" . .RelPermalink }}
-  </section>
-  {{ end }}
 </div>
 {{ end }}
 
