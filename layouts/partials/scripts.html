@@ -19,3 +19,15 @@
   {{ $mainJs = $mainJs | minify }}
 {{ end }}
 <script src="{{ $mainJs.RelPermalink }}"></script>
+
+{{ $fireworkJs := resources.Get "js/firework.js" }}
+{{ if hugo.IsProduction }}
+  {{ $fireworkJs = $fireworkJs | minify }}
+{{ end }}
+<script src="{{ $fireworkJs.RelPermalink }}"></script>
+
+{{ $animeJs := resources.Get "js/anime.min.js" }}
+{{ if hugo.IsProduction }}
+  {{ $animeJs = $animeJs | minify }}
+{{ end }}
+<script src="{{ $animeJs.RelPermalink }}"></script>
