@@ -19,9 +19,3 @@
   {{ $mainJs = $mainJs | minify }}
 {{ end }}
 <script src="{{ $mainJs.RelPermalink }}"></script>
-
-{{ $fireworkJs := resources.Get "js/firework.js" }}
-<script src="{{ $fireworkJs.RelPermalink }}"></script>
-
-{{ $animeJs := resources.Get "js/anime.min.js" }}
-<script src="{{ $animeJs.RelPermalink }}"></script>
