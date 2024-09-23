@@ -13,6 +13,10 @@
 - [Examples](#examples)
 - [Publish your site](#publish-your-site)
 
+## 构建Tailwind主题
+
+可以通过`npx tailwindcss -i ./src/input.css -o ./assets/css/output.css --watch`实时构建Tailwind主题.
+
 ## Intro
 
 Dream is a [Hugo](https://gohugo.io/) theme. I build it for [my blog](https://g1en.site).

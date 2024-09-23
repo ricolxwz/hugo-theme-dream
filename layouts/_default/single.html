@@ -36,7 +36,8 @@
   <div>
   {{ end }}
     {{ if .Params.showTableOfContents | default true }}
-    <div class="absolute right-0 lg:w-36 xl:w-48 hidden lg:block" :style="{ height }">
+    <div class="absolute right-1 xl:w-48 2xl:w-60 top-24 hidden xl:block" :style="{ height }">
+      <p class="font-bold text-xl ml-5">目录</p2>
       {{ .TableOfContents }}
     </div>
     {{ end }}

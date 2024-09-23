@@ -58,7 +58,7 @@
 }
 
 #TableOfContents {
-  @apply sticky top-24;
+  @apply sticky;
 }
 
 #TableOfContents ul {
