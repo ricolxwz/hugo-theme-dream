@@ -107,21 +107,6 @@
       </div>
       <div class="divider"></div>
       {{ end }}
-      {{ if and site.Params.waline .Params.showWaline | default true }}
-      {{ if fileExists "layouts/partials/waline.html" }}
-        {{ partialCached "waline.html" . }}
-      {{ else }}
-        <div id="waline"></div>
-        <script type="module">
-          import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
-          init({
-            el: '#waline',
-            dark: 'html.dark',
-            serverURL: "{{ site.Params.walineServer }}",
-          });
-        </script>
-      {{ end }}
-      {{ end }}
     </article>
   </div>
 </div>
