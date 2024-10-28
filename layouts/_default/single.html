@@ -108,10 +108,20 @@
       <div class="divider"></div>
       {{ end }}
 
-      {{ if or site.Config.Services.Disqus.Shortname site.Params.utterancesRepo site.Params.valine site.Params.waline }}
-      <section class="max-w-[90ch] mx-auto space-y-4">
-        {{ partialCached "commentSystems.html" . .RelPermalink }}
-      </section>
+      {{ if site.Params.waline }}
+      {{ if fileExists "layouts/partials/waline.html" }}
+        {{ partialCached "waline.html" . }}
+      {{ else }}
+        <div id="waline"></div>
+        <script type="module">
+          import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+          init({
+            el: '#waline',
+            dark: 'html.dark',
+            serverURL: {{ site.Params.walineServer }},
+          });
+        </script>
+      {{ end }}
       {{ end }}
 
     </article>
